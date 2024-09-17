@@ -71,7 +71,7 @@ void DistributorSSP::begin() {
   #endif
 }
 
-bool DistributorSSP::sendSwitchPressed(byte deviceId, byte switchStatus[],
+bool DistributorSSP::sendSwitchPressed(byte deviceId, bool switchStatus[],
                                        byte qtdSwitches) {
   _ssp->writeCommand(CMD_SEND_DEVICE_SWITCH_PRESSED);
   _ssp->writeByte(deviceId);

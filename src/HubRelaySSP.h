@@ -30,5 +30,5 @@ class DistributorSSP : CoreSSP {
   DistributorSSP(HardwareSerial& serial, Stream* logSerial, byte reDePin = 2,
                  long baudrate = 115200, int timeout = 100);
   void begin() override;
-  bool sendSwitchPressed(byte deviceId, byte switchStatus[], byte switches);
+  bool sendSwitchPressed(byte deviceId, bool switchStatus[], byte switches);
 };
