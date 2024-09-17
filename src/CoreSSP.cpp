@@ -37,21 +37,22 @@ void CoreSSP::_clearSerialBuffer() {
 }
 
 void CoreSSP::_defaultErrorCallback(uint8_t errorNum) {
-  getLogSerial()->println("Error in SSP:" + String(errorNum));
+  auto logSerial = _thisInstance->_logSerial;
+  logSerial->println("Error in SSP:" + String(errorNum));
   switch (errorNum) {
     case ERROR_IS_DEAD:
-      getLogSerial()->println(F("Flushing cache e recriando SSP"));
+      logSerial->println(F("Flushing cache e recriando SSP"));
     case ERROR_COMMAND_IS_NOT_REGISTERED:
-      getLogSerial()->println(F("Comando nao registrado. Ignorando"));
+      logSerial->println(F("Comando nao registrado. Ignorando"));
       break;
     case ERROR_COMMAND_IS_NOT_IN_RESERVED_RANGE:
-      getLogSerial()->println(F("Comando fora do intervalo permitido"));
+      logSerial->println(F("Comando fora do intervalo permitido"));
       break;
     case ERROR_EOT_WAS_NOT_READ:
-      getLogSerial()->println(F("ERR: EOT nao foi lido"));
+      logSerial->println(F("ERR: EOT nao foi lido"));
       break;
     case ERROR_IS_NOT_WAITING_FOR_READ_EOT:
-      getLogSerial()->println(F("ERR: EOT nao esperado"));
+      logSerial->println(F("ERR: EOT nao esperado"));
       break;
   }
   // never die
