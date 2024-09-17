@@ -46,7 +46,7 @@ void HubrelaySSP::loop() {
   // receive é prioritario, então nunca volta para transmit
 }
 
-void HubrelaySSP::_switchPressedCallbackFnc(handleSwitchPressedFnc callback) {
+void HubrelaySSP::switchPressedCallbackFnc(handleSwitchPressedFnc callback) {
   _handleSwitchPressed = callback;
 }
 

@@ -12,7 +12,7 @@ class HubrelaySSP : CoreSSP {
   void loop();
   void begin() override;
   typedef void (*handleSwitchPressedFnc)(byte deviceId, byte switchNum);  
-
+  void switchPressedCallbackFnc(handleSwitchPressedFnc callback);
  private:
   HardwareSerial* _logSerial;
   void (*_onCmdSwitchStatusCallback)(void);
@@ -21,7 +21,6 @@ class HubrelaySSP : CoreSSP {
 
  protected:
   friend class CoreSSP;
-  void _switchPressedCallbackFnc(handleSwitchPressedFnc callback);
   static void _onCmdSwitchPressed();
 };
 
