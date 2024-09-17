@@ -5,7 +5,7 @@
 #define CMD_SEND_DEVICE_SWITCH_PRESSED 's'
 
 HubrelaySSP::HubrelaySSP(HardwareSerial& serial, Stream* logSerial,
-              byte reDePin = 2, long baudrate = 115200, int timeout = 100):CoreSSP(serial,logSerial,
+              byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial,
               reDePin, baudrate, timeout) {}
 
 void HubrelaySSP::_onCmdSwitchPressed() {
@@ -51,7 +51,7 @@ void HubrelaySSP::_switchPressedCallbackFnc(handleSwitchPressedFnc callback) {
 }
 
 DistributorSSP::DistributorSSP(HardwareSerial& serial, Stream* logSerial,
-              byte reDePin = 2, long baudrate = 115200, int timeout = 100):CoreSSP(serial,logSerial,
+              byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial,
               reDePin, baudrate, timeout) {};
 
 void DistributorSSP::begin() {

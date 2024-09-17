@@ -10,6 +10,7 @@ class HubrelaySSP : CoreSSP {
   HubrelaySSP(HardwareSerial& serial, Stream* logSerial, byte reDePin = 2,
               long baudrate = 115200, int timeout = 100);
   void loop();
+  void begin() override;
   typedef void (*handleSwitchPressedFnc)(byte deviceId, byte switchNum);  
 
  private:
@@ -22,7 +23,6 @@ class HubrelaySSP : CoreSSP {
   friend class CoreSSP;
   void _switchPressedCallbackFnc(handleSwitchPressedFnc callback);
   static void _onCmdSwitchPressed();
-  void begin() override;
 };
 
 class DistributorSSP : CoreSSP {

@@ -1,0 +1,13 @@
+{
+    "name": "HubDistSSP",
+    "description": "This is an Arduino library that implements the master/client logic of communication in a very specific scenario: you have a number of clients controlling switches pressed and informing the master about that events through RS485 serial infrastructure",
+    "version": "1.0.0",
+    "authors": [
+      {
+        "name": "Nemer Daud"
+      }
+    ],
+    "keywords": "arduino, library",
+    "frameworks": "arduino",
+    "platforms": "atmelavr"
+  }

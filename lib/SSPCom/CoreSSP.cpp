@@ -3,7 +3,7 @@
 #define NO_RE_DE_PIN 255
 
 CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial,
-              byte reDePin = 2, long baudrate = 115200, int timeout = 100){
+              byte reDePin, long baudrate, int timeout):_serial(serial){
   this->_thisInstance = this;
 }
  
