@@ -6,7 +6,7 @@
 class CoreSSP {
  public:
   typedef void (*errCallBackFnc)(uint8_t); 
-  CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc& errorCallback,
+  CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc errorCallback,
               byte reDePin = 2, long baudrate = 115200, int timeout = 100); 
   virtual void begin() = 0;
  protected:
@@ -22,9 +22,11 @@ class CoreSSP {
   void _setupToTransmit();
   void _setupToReceive();
   void _clearSerialBuffer();
-  void _defaultErrorCallback(uint8_t errorNum);
+  static void _defaultErrorCallback(uint8_t errorNum);
   void _logPrintln(String msg);
   static SafeSimpleSerialProtocol* getSSP();
+  static Stream* getLogSerial();
+
   errCallBackFnc _errorCallback;
 
 };

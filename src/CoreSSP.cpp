@@ -4,9 +4,12 @@
 
 CoreSSP* CoreSSP::_thisInstance = nullptr;
 
-CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc& errorCallback,
+CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc errorCallback,
               byte reDePin, long baudrate, int timeout):_serial(serial), _errorCallback(errorCallback){
   this->_thisInstance = this;
+  if (!errorCallback) {
+    _errorCallback = this->_defaultErrorCallback;
+  }
 }
  
 void CoreSSP::_setupToTransmit() {
@@ -34,29 +37,29 @@ void CoreSSP::_clearSerialBuffer() {
 }
 
 void CoreSSP::_defaultErrorCallback(uint8_t errorNum) {
-  _logPrintln("Error in SSP:" + String(errorNum));
+  getLogSerial()->println("Error in SSP:" + String(errorNum));
   switch (errorNum) {
     case ERROR_IS_DEAD:
-      _logPrintln(F("Flushing cache e recriando SSP"));
+      getLogSerial()->println(F("Flushing cache e recriando SSP"));
     case ERROR_COMMAND_IS_NOT_REGISTERED:
-      _logPrintln(F("Comando nao registrado. Ignorando"));
+      getLogSerial()->println(F("Comando nao registrado. Ignorando"));
       break;
     case ERROR_COMMAND_IS_NOT_IN_RESERVED_RANGE:
-      _logPrintln(F("Comando fora do intervalo permitido"));
+      getLogSerial()->println(F("Comando fora do intervalo permitido"));
       break;
     case ERROR_EOT_WAS_NOT_READ:
-      _logPrintln(F("ERR: EOT nao foi lido"));
+      getLogSerial()->println(F("ERR: EOT nao foi lido"));
       break;
     case ERROR_IS_NOT_WAITING_FOR_READ_EOT:
-      _logPrintln(F("ERR: EOT nao esperado"));
+      getLogSerial()->println(F("ERR: EOT nao esperado"));
       break;
   }
-  // never dead
-  if (_ssp->isDead()) {
-    delete _ssp;
-    _ssp = nullptr;
-    _clearSerialBuffer();
-    begin();
+  // never die
+  if (_thisInstance->_ssp->isDead()) {
+    delete _thisInstance->_ssp;
+    _thisInstance->_ssp = nullptr;
+    _thisInstance->_clearSerialBuffer();
+    _thisInstance->begin();
   }
 }
 

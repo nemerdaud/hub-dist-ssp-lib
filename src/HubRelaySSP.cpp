@@ -5,7 +5,7 @@
 #define CMD_SEND_DEVICE_SWITCH_PRESSED 's'
 
 HubrelaySSP::handleSwitchPressedFnc HubrelaySSP::_handleSwitchPressed = nullptr;
-HubrelaySSP::HubrelaySSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc& errorCallback,
+HubrelaySSP::HubrelaySSP(HardwareSerial& serial, Stream* logSerial,errCallBackFnc errorCallback,
               byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial, errorCallback,
               reDePin, baudrate, timeout) {}
 
@@ -50,7 +50,7 @@ void HubrelaySSP::switchPressedCallbackFnc(handleSwitchPressedFnc callback) {
   _handleSwitchPressed = callback;
 }
 
-DistributorSSP::DistributorSSP(HardwareSerial& serial, Stream* logSerial,errCallBackFnc& errorCallback,
+DistributorSSP::DistributorSSP(HardwareSerial& serial, Stream* logSerial,errCallBackFnc errorCallback,
               byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial, errorCallback,
               reDePin, baudrate, timeout) {};
 
