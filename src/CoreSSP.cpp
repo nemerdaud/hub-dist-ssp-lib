@@ -2,6 +2,8 @@
 #include <CoreSSP.h>
 #define NO_RE_DE_PIN 255
 
+CoreSSP* CoreSSP::_thisInstance = nullptr;
+
 CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial,
               byte reDePin, long baudrate, int timeout):_serial(serial){
   this->_thisInstance = this;
