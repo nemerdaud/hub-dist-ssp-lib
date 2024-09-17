@@ -5,8 +5,8 @@
 #define CMD_SEND_DEVICE_SWITCH_PRESSED 's'
 
 HubrelaySSP::handleSwitchPressedFnc HubrelaySSP::_handleSwitchPressed = nullptr;
-HubrelaySSP::HubrelaySSP(HardwareSerial& serial, Stream* logSerial,
-              byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial,
+HubrelaySSP::HubrelaySSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc& errorCallback,
+              byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial, errorCallback,
               reDePin, baudrate, timeout) {}
 
 void HubrelaySSP::_onCmdSwitchPressed() {
@@ -28,9 +28,8 @@ void HubrelaySSP::begin() {
   _ssp = new SafeSimpleSerialProtocol(_serial, _baudrate, CHARACTER_TIMEOUT,
                                       *_errorCallback, 'a', 'z');
   _ssp->setDieInstantlyOnNotRegisteredCommand(false);
-  _ssp->registerCommand(CMD_SEND_DEVICE_SWITCH_PRESSED, _onCmdSwitchPressed);
   _ssp->init();
-  
+  _ssp->registerCommand(CMD_SEND_DEVICE_SWITCH_PRESSED, _onCmdSwitchPressed);
   #ifdef HUBRELAY_ONLY_RECEIVE
   _setupToReceive();
   #elif HUBRELAY_ONLY_TRANSMIT
@@ -51,8 +50,8 @@ void HubrelaySSP::switchPressedCallbackFnc(handleSwitchPressedFnc callback) {
   _handleSwitchPressed = callback;
 }
 
-DistributorSSP::DistributorSSP(HardwareSerial& serial, Stream* logSerial,
-              byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial,
+DistributorSSP::DistributorSSP(HardwareSerial& serial, Stream* logSerial,errCallBackFnc& errorCallback,
+              byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial, errorCallback,
               reDePin, baudrate, timeout) {};
 
 void DistributorSSP::begin() {

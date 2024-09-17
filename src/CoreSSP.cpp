@@ -4,8 +4,8 @@
 
 CoreSSP* CoreSSP::_thisInstance = nullptr;
 
-CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial,
-              byte reDePin, long baudrate, int timeout):_serial(serial){
+CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc& errorCallback,
+              byte reDePin, long baudrate, int timeout):_serial(serial), _errorCallback(errorCallback){
   this->_thisInstance = this;
 }
  
@@ -68,8 +68,4 @@ void CoreSSP::_logPrintln(String msg) {
 
 SafeSimpleSerialProtocol* CoreSSP::getSSP() { 
   return _thisInstance->_ssp; 
-}
-
-void CoreSSP::onError(void (*callback)(uint8_t)) {
-  _errorCallback = callback;
 }
