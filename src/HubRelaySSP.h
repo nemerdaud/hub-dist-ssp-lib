@@ -17,7 +17,6 @@ class HubrelaySSP : CoreSSP {
   HardwareSerial* _logSerial;
   void (*_onCmdSwitchStatusCallback)(void);
   static handleSwitchPressedFnc _handleSwitchPressed;
-  static handleSwitchPressedFnc getSwitchPressedHandler();
 
  protected:
   friend class CoreSSP;

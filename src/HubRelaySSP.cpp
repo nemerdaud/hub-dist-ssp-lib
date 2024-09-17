@@ -4,6 +4,7 @@
 #define CHARACTER_TIMEOUT 1000
 #define CMD_SEND_DEVICE_SWITCH_PRESSED 's'
 
+HubrelaySSP::handleSwitchPressedFnc HubrelaySSP::_handleSwitchPressed = nullptr;
 HubrelaySSP::HubrelaySSP(HardwareSerial& serial, Stream* logSerial,
               byte reDePin, long baudrate, int timeout):CoreSSP(serial,logSerial,
               reDePin, baudrate, timeout) {}
