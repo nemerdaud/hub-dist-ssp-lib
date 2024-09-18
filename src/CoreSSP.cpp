@@ -14,18 +14,16 @@ CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc error
  
 void CoreSSP::_setupToTransmit() {
 #ifndef HUBRELAY_ONLY_RECEIVE
-  if (!_reDeTransmiting && _reDePin != NO_RE_DE_PIN) {
+  if (_reDePin != NO_RE_DE_PIN) {
     digitalWrite(_reDePin, HIGH);
-    _reDeTransmiting = true;
   }
 #endif
 }
 
 void CoreSSP::_setupToReceive() {
 #ifndef HUBRELAY_ONLY_TRANSMIT
-  if (_reDeTransmiting && _reDePin != NO_RE_DE_PIN) {
+  if (_reDePin != NO_RE_DE_PIN) {
     digitalWrite(_reDePin, LOW);
-    _reDeTransmiting = false;
   }
 #endif
 }

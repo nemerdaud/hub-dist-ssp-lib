@@ -24,7 +24,6 @@ class CoreSSP {
   static void _defaultErrorCallback(uint8_t errorNum);
   void _logPrintln(String msg);
   static SafeSimpleSerialProtocol* getSSP();
-  static Stream* getLogSerial();
 
   errCallBackFnc _errorCallback;
 
