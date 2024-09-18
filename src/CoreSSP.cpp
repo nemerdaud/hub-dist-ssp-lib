@@ -5,7 +5,8 @@
 CoreSSP* CoreSSP::_thisInstance = nullptr;
 
 CoreSSP::CoreSSP(HardwareSerial& serial, Stream* logSerial, errCallBackFnc errorCallback,
-              byte reDePin, long baudrate, int timeout):_serial(serial), _errorCallback(errorCallback){
+              byte reDePin, long baudrate, int timeout):_serial(serial),_reDePin(reDePin),
+              _baudrate(baudrate), _timeout(timeout), _errorCallback(errorCallback){
   this->_thisInstance = this;
   if (!errorCallback) {
     _errorCallback = this->_defaultErrorCallback;
