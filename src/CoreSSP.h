@@ -17,7 +17,6 @@ class CoreSSP {
   long _baudrate;
   int _timeout;
   byte _reDePin;
-  bool _reDeTransmiting;
  // do nothing as default
   void _setupToTransmit();
   void _setupToReceive();
