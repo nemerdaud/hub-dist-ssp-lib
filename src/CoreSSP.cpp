@@ -24,7 +24,7 @@ void CoreSSP::_setupToTransmit() {
 void CoreSSP::_setupToReceive() {
 #ifndef HUBRELAY_ONLY_TRANSMIT
   if (_reDeTransmiting && _reDePin != NO_RE_DE_PIN) {
-    digitalWrite(_reDePin, HIGH);
+    digitalWrite(_reDePin, LOW);
     _reDeTransmiting = false;
   }
 #endif
